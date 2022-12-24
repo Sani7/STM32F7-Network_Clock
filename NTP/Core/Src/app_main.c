@@ -73,7 +73,7 @@ void app_main(void *argument)
       debugln("DIFF  : %02d:%02d:%02d", diff.Hour, diff.Minute, diff.Second);
       BSP_LCD_Clear(LCD_COLOR_TRANSPARENT);
 
-      Clock_Write_Date(0, Y_CENTER + 40, local.Wday, local.Day, local.Month, local.Year + 1970);
+      Clock_Write_Date(0, 0, Y_CENTER, 40, local.Wday, local.Day, local.Month, local.Year + 1970);
 
       Clock_Draw_Hands(X_CENTER, Y_CENTER, Radius, local.Hour, local.Minute, local.Second);
     }

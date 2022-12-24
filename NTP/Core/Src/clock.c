@@ -82,10 +82,13 @@ void Clock_Draw_Hands(uint16_t xCenter, uint16_t yCenter, double radius,
 	BSP_LCD_DrawLine(xCenter, yCenter, x2, y2);
 }
 
-void Clock_Write_Date(uint16_t xCenter, uint16_t yCenter, uint8_t Wday, uint8_t Day, uint8_t Month, uint16_t Year)
+void Clock_Write_Date(uint16_t xCenter, uint16_t xOffset, uint16_t yCenter, uint16_t yOffset, uint8_t Wday, uint8_t Day, uint8_t Month, uint16_t Year)
 {
 	char buff[16];
 	memset(buff, 0, 16);
-	sprintf(buff, "%s %2u %s %4u", days[Wday - 1], Day, months[Month - 1], Year);
-	BSP_LCD_DisplayStringAt(xCenter, yCenter, (uint8_t*)buff, CENTER_MODE);
+	sprintf(buff, "%s %2u", days[Wday - 1], Day);
+	BSP_LCD_DisplayStringAt(xCenter - xOffset, yCenter - yOffset, (uint8_t*)buff, CENTER_MODE);
+	memset(buff, 0, 16);
+	sprintf(buff, "%s %4u", months[Month - 1], Year);
+	BSP_LCD_DisplayStringAt(xCenter + xOffset, yCenter + yOffset, (uint8_t*)buff, CENTER_MODE);
 }
