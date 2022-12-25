@@ -52,7 +52,7 @@ void app_main(void *argument)
   {
     Get_Time(&sDate, &sTime);
     DS3231_GetTime(&utc);
-    if ((utc.Hour == 0) && (utc.Minute == 0) && (utc.Second == 0))
+    if ((utc.Hour == 0) && (utc.Minute == 0) && (utc.Second == 0) && sBefore == 59)
     {
       debugln("Updating time");
       breakTime(NTPToEpochUnix(), &utc, 0);
