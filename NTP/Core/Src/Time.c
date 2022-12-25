@@ -1,5 +1,12 @@
 #include "Time.h"
 
+/*
+ * TimeLib
+ * Based on the Time library by Michael Margolis (make and break time functions)
+ * Additions by: Sani7 (Sander Speetjens)
+*/
+
+
 /**
  * @fn uint8_t IsDST(ts*)
  * @brief This function calculates if we are in EDST
@@ -14,13 +21,13 @@ uint8_t IsDST(ts *utc)
     // number of days of each month
     uint8_t days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    // January, february, and december are out.
+    // November, December, January, february are out of DST.
     if (utc->Month < 3 || utc->Month > 10)
     {
         utc->IsDST = 0;
         return utc->IsDST;
     }
-    // April to september are in
+    // April to september are in DST
     if (utc->Month > 3 && utc->Month < 10)
     {
         utc->IsDST = 1;
@@ -32,7 +39,7 @@ uint8_t IsDST(ts *utc)
     days[1] -= (y % 4) || (!(y % 100) && (y % 400));
     d = days[m - 1];
 
-    /* dow is in normal format*/
+    // dow is in normal format
     nextSunday = days[m - 1] - ((d += m < 3 ? y-- : y - 2, 23 * m / 9 + d + 4 + y / 4 - y / 100 + y / 400) % 7);
     // Start: Last Sunday in March
     if (utc->Month == 3)

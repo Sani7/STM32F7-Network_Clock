@@ -2,6 +2,12 @@
 #include <stdint.h>
 #include "debug.h"
 
+/*
+ * TimeLib
+ * Based on the Time library by Michael Margolis (make and break time functions)
+ * Additions by: Sani7 (Sander Speetjens)
+*/
+
 // to transform a number of seconds into a current time you need to do some maths
 #define NUMBEROFSECONDSPERDAY 86400UL
 #define NUMBEROFSECONDSPERHOUR 3600UL
