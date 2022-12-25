@@ -208,11 +208,11 @@ void toTimeZone(ts *utc, ts *local, int8_t timeZone, uint8_t IsDST)
 void TimeDiff(ts* time1, ts* time2, ts* diff)
 {
 	uint16_t totalTime;
-	totalTime = (time1->Day - time2->Day) * 86400 + (time1->Hour - time2->Hour) * 3600 + (time1->Minute - time2->Minute) * 60 + (time1->Second - time2->Second);
-	diff->Day = totalTime / 86400;
-	totalTime %= 86400;
-	diff->Hour = totalTime / 3600;
-	totalTime %= 3600;
+	totalTime = (time1->Day - time2->Day) * 24 * 60 * 60 + (time1->Hour - time2->Hour) * 60 * 60 + (time1->Minute - time2->Minute) * 60 + (time1->Second - time2->Second);
+	diff->Day = totalTime / (24 * 60 * 60);
+	totalTime %= (24 * 60 * 60);
+	diff->Hour = totalTime / (60 * 60);
+	totalTime %= (60 * 60);
 	diff->Minute = totalTime / 60;
 	diff->Second = totalTime % 60;
 }
