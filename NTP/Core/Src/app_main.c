@@ -55,9 +55,9 @@ void app_main(void *argument)
     DS3231_GetTime(&utc);
     if ((utc.Hour == 0) && (utc.Minute == 0) && (utc.Second == 0) && sBefore == 59)
     {
-      debugln("Updating time");
+      debugln(" \nUpdating time");
       breakTime(NTPToEpochUnix(), &utc, 0);
-      printf(" \n \n \n");
+      printf(" \n \n \n \n");
       Ts_To_RTC(&utc, &sTime, &sDate);
       Set_Time(sTime, sDate);
       DS3231_SetTime(&utc);
