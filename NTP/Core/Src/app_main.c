@@ -29,6 +29,7 @@ void app_main(void *argument)
   debugln("LWIP is initialized");
 
   DS3231_Init(&hi2c1);
+  debugln("DS3231 is initialized");
 
   // The stored time is always in UTC
   breakTime(NTPToEpochUnix(), &utc, 0);
