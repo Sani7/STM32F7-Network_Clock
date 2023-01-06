@@ -77,8 +77,8 @@ void Clock_Draw_Hands(uint16_t xCenter, uint16_t yCenter, double radius,
 
 	angle = hours * 30 + ((minutes / 12) * 6);
 	angle = angle * M_PI / 180;
-	x2 = xCenter + (sin(angle) * (radius / 2));
-	y2 = yCenter - (cos(angle) * (radius / 2));
+	x2 = xCenter + (sin(angle) * (radius / 4));
+	y2 = yCenter - (cos(angle) * (radius / 4));
 	BSP_LCD_DrawLine(xCenter, yCenter, x2, y2);
 }
 
