@@ -10,14 +10,13 @@
 #include "debug.h"
 
 extern RTC_HandleTypeDef hrtc;
-extern I2C_HandleTypeDef hi2c1;
 
 void app_main(void *argument)
 {
   ts utc;
-  ts rtc;
+  //ts rtc;
   ts local;
-  ts diff;
+  //ts diff;
   RTC_TimeTypeDef sTime;
   RTC_DateTypeDef sDate;
   uint8_t sBefore;
@@ -28,14 +27,11 @@ void app_main(void *argument)
 
   debugln("LWIP is initialized");
 
-  DS3231_Init(&hi2c1);
-  debugln("DS3231 is initialized");
-
   // The stored time is always in UTC
   breakTime(NTPToEpochUnix(), &utc, 0);
   toTimeZone(&utc, &local, UTC_DELTA_HOURS, 1);
   debugln("Started: %02d:%02d:%02d", utc.Hour, utc.Minute, utc.Second);
-  debugln(" \n \n \n"); // I don't know why, but my uart/Serial monitor doesn't show epoch and packet sent if I remove the spaces
+  debugln(" \n"); // I don't know why, but my uart/Serial monitor doesn't show epoch and packet sent if I remove the spaces
   Ts_To_RTC(&utc, &sTime, &sDate);
   Set_Time(sTime, sDate);
   DS3231_SetTime(&utc);
@@ -52,26 +48,26 @@ void app_main(void *argument)
   for (;;)
   {
     Get_Time(&sDate, &sTime);
-    DS3231_GetTime(&utc);
+    //DS3231_GetTime(&utc);
     if ((utc.Hour == 0) && (utc.Minute == 0) && (utc.Second == 0) && sBefore == 59)
     {
       debugln(" \nUpdating time");
       breakTime(NTPToEpochUnix(), &utc, 0);
-      printf(" \n \n \n \n");
+      printf(" \n");
       Ts_To_RTC(&utc, &sTime, &sDate);
       Set_Time(sTime, sDate);
-      DS3231_SetTime(&utc);
+      //DS3231_SetTime(&utc);
     }
 
-    RTC_To_Ts(&sTime, &sDate, &rtc);
+    RTC_To_Ts(&sTime, &sDate, &utc);
     toTimeZone(&utc, &local, UTC_DELTA_HOURS, 1);
     if (local.Second != sBefore)
     {
-      printf(CURSOR_PREV_N_LINES(3) ERASE_FROM_CURSOR_TO_END);
-      debugln("RTC   : %02d:%02d:%02d", sTime.Hours, sTime.Minutes, sTime.Seconds);
+      printf(CURSOR_PREV_N_LINES(1) ERASE_FROM_CURSOR_TO_END);
+      //debugln("RTC   : %02d:%02d:%02d", sTime.Hours, sTime.Minutes, sTime.Seconds);
       debugln("DS3231: %02d:%02d:%02d", utc.Hour, utc.Minute, utc.Second);
-      TimeDiff(&utc, &rtc, &diff);
-      debugln("DIFF  : %02d:%02d:%02d", diff.Hour, diff.Minute, diff.Second);
+      //TimeDiff(&utc, &rtc, &diff);
+      //debugln("DIFF  : %02d:%02d:%02d", diff.Hour, diff.Minute, diff.Second);
       BSP_LCD_Clear(LCD_COLOR_TRANSPARENT);
 
       Clock_Write_Date(0, 0, Y_CENTER, 40, local.Wday, local.Day, local.Month, local.Year + 1970);
