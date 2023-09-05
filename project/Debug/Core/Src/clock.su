@@ -1,0 +1,3 @@
+../Core/Src/clock.c:26:6:Clock_Draw_Outline	64	static
+../Core/Src/clock.c:61:6:Clock_Draw_Hands	56	static
+../Core/Src/clock.c:85:6:Clock_Write_Date	40	static

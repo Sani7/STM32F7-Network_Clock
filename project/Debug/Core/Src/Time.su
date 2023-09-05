@@ -1,0 +1,5 @@
+../Core/Src/Time.c:17:9:IsDST	40	static
+../Core/Src/Time.c:64:6:breakTime	48	static
+../Core/Src/Time.c:140:10:makeTime	40	static
+../Core/Src/Time.c:192:6:toTimeZone	32	static
+../Core/Src/Time.c:208:6:TimeDiff	32	static

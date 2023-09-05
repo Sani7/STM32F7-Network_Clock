@@ -1,0 +1,4 @@
+RTC.c:5:6:Set_Time	3
+RTC.c:19:6:Get_Time	1
+RTC.c:27:6:Ts_To_RTC	1
+RTC.c:37:6:RTC_To_Ts	1

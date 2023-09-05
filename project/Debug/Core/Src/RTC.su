@@ -1,0 +1,4 @@
+../Core/Src/RTC.c:5:6:Set_Time	8	static
+../Core/Src/RTC.c:19:6:Get_Time	16	static
+../Core/Src/RTC.c:27:6:Ts_To_RTC	24	static
+../Core/Src/RTC.c:37:6:RTC_To_Ts	24	static

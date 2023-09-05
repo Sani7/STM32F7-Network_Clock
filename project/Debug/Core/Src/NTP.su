@@ -1,0 +1,3 @@
+../Core/Src/NTP.c:11:10:NTPToEpochUnix	32	static
+../Core/Src/NTP.c:92:6:NTP_DNS_Callback	24	static
+../Core/Src/NTP.c:111:6:NTP_RECV_CALLBACK	32	static

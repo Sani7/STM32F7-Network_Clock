@@ -1,0 +1,3 @@
+clock.c:26:6:Clock_Draw_Outline	3
+clock.c:61:6:Clock_Draw_Hands	1
+clock.c:85:6:Clock_Write_Date	1
