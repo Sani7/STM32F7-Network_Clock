@@ -6,3 +6,5 @@ NTP/.settings/
 NTP/.vscode/
 
 NTP/Debug/
+
+build/
